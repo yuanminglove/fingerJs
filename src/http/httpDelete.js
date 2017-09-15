@@ -1,7 +1,7 @@
-import createHttpPromise from './createHttpPromise'
+const createHttpPromise = require('./createHttpPromise')
 /**
  * ajax delete 方法
  */
-export default (url,data,headers = require('./HttpHeader')) => {
+module.exports =  (url,data,headers = require('./HttpHeader').html) => {
   return createHttpPromise(url,data,headers,'DELETE')
 }

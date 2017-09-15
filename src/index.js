@@ -1,3 +1,1 @@
-import Http from './http'
-
-window.Http = Http()
+window.Http = require('./http')

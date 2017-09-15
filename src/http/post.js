@@ -1,3 +1,1 @@
-import createHttpPromise from './createHttpPromise'
-
-export default createHttpPromise
+module.exports = require('./createHttpPromise')
