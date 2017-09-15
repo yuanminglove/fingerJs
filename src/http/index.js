@@ -1,9 +1,10 @@
 import post from './post'
 import get from './get'
-import httpDelete from './delete'
+import httpDelete from './httpDelete'
 import ajax from './createHttpPromise'
+export default ajax
 export {
-  ajax as default,
+  ajax,
   get,
   post,
   httpDelete,

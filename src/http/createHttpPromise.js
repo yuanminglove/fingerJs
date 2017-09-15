@@ -3,24 +3,9 @@
  * @author zido
  * @since 2017/6/3 0003
  */
-import {message as Message} from 'antd'
 import isEmpty from './isEmpty'
 export const defaultReject = ({message = '服务器异常，请尝试刷新重试'}) => {
-  Message.error(message)
-}
-
-export const resolveJson = (data, cb) => {
-  if (data.success !== null && data.success === false) {
-    if (!isEmpty(data.message)) {
-      cb({status: -1, info: data.message})
-    } else if (!isEmpty((data.data))) {
-      return data
-    }
-    cb({status: -1})
-    return
-  }
-  if (data.success !== null && data.success === true)
-    return data
+  console.error(message)
 }
 
 export const createHttpPromise = (url, data = {}, headers = require('./HttpHeader'), method = 'POST') => {
@@ -28,6 +13,7 @@ export const createHttpPromise = (url, data = {}, headers = require('./HttpHeade
     method: method,
     headers: headers,
     body: data && JSON.stringify(data),
+    credentials:'include',
   }).then((response) => {
     if(!response.ok){
       return {
@@ -37,26 +23,28 @@ export const createHttpPromise = (url, data = {}, headers = require('./HttpHeade
     const contentType = response.headers.get('content-type')
     if (contentType && contentType.indexOf('application/json') !== -1)
       return response.json()
+    if(contentType)
+      return response.text()
     return {
       success:false,
       message:'服务器未返回相应数据，请联系管理员',
     }
-  },(err) => {
-    console.error(err)
+  }).catch(err => {
+    console.log('这里发生错误',err.message)
+    throw {
+      success:false,
+      message:err.message,
+    }
   }).then((json) => {
     if(json.success !== null && json.success === false){
-      const err = new Error()
-      err.data = json
-      throw err
+      throw json
     }
     else{
-      if(!isEmpty(json.message))
-        Message.success(json.message)
       return json
     }
   }).catch((err) => {
-    defaultReject(err.data)
-    return err.data
+    defaultReject(err)
+    return err
   })
 }
 export default createHttpPromise
