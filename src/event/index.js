@@ -1,1 +1,3 @@
-module.exports = require('./EventUtil')
+import handler from './handler'
+
+export default handler

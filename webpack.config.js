@@ -11,7 +11,7 @@
 
 const path = require('path')
 const webpack = require('webpack')
-
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const env = process
   .env
   .NODE_ENV
@@ -22,10 +22,15 @@ const common = {
   rootPath: __dirname,
   srcPath: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
+  indexHtml:path.join(__dirname,'src','index.html')
 }
 
 if (isDev) {
   common.plugins = [
+    new HtmlWebpackPlugin({
+      template: common.indexHtml,
+      inject: 'body',
+    }),
     new webpack.HotModuleReplacementPlugin(), // HMR全局启用
     new webpack.NamedModulesPlugin(), // 在HMR更新的浏览器控制台中打印更易读的模块名称
   ]
@@ -34,6 +39,10 @@ if (isDev) {
     new webpack.optimize.UglifyJsPlugin(({
       
     })),
+    new HtmlWebpackPlugin({
+      template: common.indexHtml,
+      inject: 'body',
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
   ]
 }
@@ -49,7 +58,7 @@ const webpackConfig = {
     app: path.join(common.srcPath, 'index.js'),
   },
   output: {
-    filename: 'zido-utils.js',
+    filename: 'finger.js',
     path: common.dist,
   },
   context: path.resolve(__dirname, 'src'),
@@ -77,6 +86,23 @@ const webpackConfig = {
     ],
   },
   plugins: common.plugins,
+}
+
+if (isDev) {
+  webpackConfig.devServer = {
+    historyApiFallback: true,
+    hot: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    clientLogLevel: 'none', //日志
+    compress: true, //压缩
+    port: 3000,
+    stats: {
+      colors: true
+    },
+    disableHostCheck: true,
+    open:true,
+  }
 }
 
 module.exports = webpackConfig

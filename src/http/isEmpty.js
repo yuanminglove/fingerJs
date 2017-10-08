@@ -4,7 +4,7 @@
  * @author zido
  * @since 2017/6/3 0003
  */
-module.exports =  (...objs)=>{
+export default (...objs)=>{
   if(objs.length === 0)
     return true
   for (let obj of objs) {

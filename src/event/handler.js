@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   addHandler: function (element, type, handler) { //添加事件处理器
     if (element.addEventListener) { //检查dom2级支持
       element.addEventListener(type, handler, false)

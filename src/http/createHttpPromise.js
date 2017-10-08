@@ -40,4 +40,4 @@ const createHttpPromise = (url, data = {}, headers = require('./HttpHeader').jso
     return err
   })
 }
-module.exports = createHttpPromise
+export default createHttpPromise

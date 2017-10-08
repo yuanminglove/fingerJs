@@ -18,4 +18,4 @@ header.jsonBody = Object.assign(header.json, {
   'Content-Type': 'application/json'
 })
 
-module.exports = header
+export default header

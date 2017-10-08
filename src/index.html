@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    
-  </head>
-  <body>
-    <script src="/zido-utils.js"></script>
-    <script>
-      Http.get('http://www.baidu.com').then(text => {
-        console.log(text)
-      })
-    </script>
-  </body>
+
+<head>
+
+</head>
+
+<body>
+  <button id="click">点我</button>
+</body>
+<script>
+    var btn = document.getElementById('click')
+    finger.handler.addHandler(btn, 'click', function (e) {
+      alert('ok')
+    })
+  </script>
 </html>

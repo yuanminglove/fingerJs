@@ -3,9 +3,9 @@
  * @author zido
  * @since 2017/6/3 0003
  */
-const createHttpPromise = require('./createHttpPromise')
+import createHttpPromise from './createHttpPromise'
 
-module.exports = (url, paramsObject, headers = require('./HttpHeader').html)=>{
+export default (url, paramsObject, headers = require('./HttpHeader').html)=>{
   if (paramsObject) {
     let paramsArray = []
     Object.keys(paramsObject).forEach(key => {
