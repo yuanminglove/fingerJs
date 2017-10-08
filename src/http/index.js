@@ -1,6 +1,12 @@
+
+import createHttpPromise from './createHttpPromise'
+import get from './get'
+import post from './post'
+import httpDelete from './httpDelete'
+
 export default {
-  ajax:require('./createHttpPromise'),
-  get:require('./get'),
-  post:require('./post'),
-  del:require('./httpDelete'),
+  createHttpPromise,
+  get,
+  post,
+  httpDelete,
 }

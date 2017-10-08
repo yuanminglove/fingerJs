@@ -21,7 +21,6 @@ const createHttpPromise = (url, data = {}, headers = require('./HttpHeader').jso
       }
     }
     const contentType = response.headers.get('content-type')
-    console.log(contentType)
     if (contentType && contentType.indexOf('application/json') !== -1)
       return response.json()
     if(contentType)
