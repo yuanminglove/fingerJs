@@ -5,6 +5,23 @@
 
 不依赖任何第三方库。
 
+## 安装
+
+直接下载[finger.min.js]()
+
+* 浏览器环境下
+直接使用script标签引用即可
+````js
+<script src="finger.min.js"></script>
+<script>
+console.log(finger.client.Chrome)
+</script>
+````
+* nodejs
+
+暂无
+
+## 功能
 
 目前包含：
 

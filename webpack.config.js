@@ -58,7 +58,7 @@ const webpackConfig = {
     app: path.join(common.srcPath, 'index.js'),
   },
   output: {
-    filename: 'finger.js',
+    filename: 'finger.min.js',
     path: common.dist,
   },
   context: path.resolve(__dirname, 'src'),
