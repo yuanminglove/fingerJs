@@ -1,0 +1,34 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],//tab占两个空格
+        // "linebreak-style": [
+        //     "error",
+        //     "windows"
+        // ], 使用windows结束符
+        "quotes": [
+            "error",
+            "single"
+        ],//强制使用单引号
+        "semi": [
+            "error",
+            "never"
+        ],
+        "no-console":"off"
+    }
+}
