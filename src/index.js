@@ -1,9 +1,6 @@
-
 import http from './http'
 import handler from './event'
 import client from './client'
-
-'use strict'
 
 const finger = {
   http,

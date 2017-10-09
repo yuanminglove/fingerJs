@@ -3,33 +3,22 @@
  * @author zido
  * @since 2017/6/3 0003
  */
-import createHttpPromise from './createHttpPromise'
+import ajax from './ajax'
+import addDataToUrl from './addDataToUrl'
 
-export default (url, paramsObject, headers = require('./HttpHeader').html)=>{
-  if (paramsObject) {
-    let paramsArray = []
-    Object.keys(paramsObject).forEach(key => {
-      if(paramsObject[key] == null)
-        return 
-      if(!(paramsObject[key] instanceof Array))
-        paramsArray.push(key + '=' + paramsObject[key])
-      const array = paramsObject[key]
-      for(let i = 0; i < array.length; i++){
-        if(array instanceof Object){
-          const item = array[i]
-          for(let k in item){
-            paramsArray.push(key+'.'+k + `[${i}]`+'='+ item[k])
-          }
-        }else{
-          paramsArray.push(key+`[${i}]`+'='+array[i])
-        }
-      }
-    })
-    if (url.search(/\?/) === -1) {
-      url += '?' + paramsArray.join('&')
-    } else {
-      url += '&' + paramsArray.join('&')
-    }
-  }
-  return createHttpPromise(url,null,headers,'GET')
+/**
+ * GET方法要求服务器将URL定位的资源放在响应报文的数据部分，回送给客户端,传递参数长度受限制,此方法用于restful风格，仅用于请求json数据
+ * 
+ * @param {string} url url地址
+ * @param {JSON} paramsObject 参数json对象
+ * @param {JSON} headers http头
+ */
+export default function(url, paramsObject, headers = require('./HttpHeader').json){
+  addDataToUrl()
+  return ajax({
+    url,
+    data:null,
+    headers,
+    method:'GET'
+  })
 }

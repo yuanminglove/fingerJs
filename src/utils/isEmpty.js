@@ -1,6 +1,5 @@
 /**
  * 判断是否为空，支持任何类型
- * <p>fill description</p>
  * @author zido
  * @since 2017/6/3 0003
  */

@@ -39,7 +39,7 @@ export default {
   },
   getRelatedTarget:function(event){ //获取事件相关的另一个节点,仅支持mouseout和mouseover事件
     if(event.relatedTarget)
-      return relatedTarget
+      return event.relatedTarget
     else if(event.toElement)
       return event.toElement
     else if(event.fromElement)
